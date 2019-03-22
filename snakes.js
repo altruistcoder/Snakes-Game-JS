@@ -1,9 +1,5 @@
-// Snakes Game
-//Game Loop - Init, Draw, Update,
-
-function init(){
-    
-   // console.log("Init");
+function init()
+{
     canvas = document.getElementById('mycanvas');
     pen = canvas.getContext('2d');
     W = canvas.width;
@@ -39,19 +35,13 @@ function init(){
         updateSnake:function(){
             var headX = this.cells[0].x;
             var headY = this.cells[0].y;
-            console.log("Head Positions: ",headX, headY);
-            
-            // Assuming Snake is moving right
-            // Insertion at head;
-            // nextHeadX = headX+1;
-            // this.cells.unshift({x:nextHeadX,y:headY});
             
             if(headX==food.x && headY==food.y){
                 food = getRandomFood();
                 score++;
             }
             else{
-                //Pop last cell if food is not eaten
+                // Pop the last cell if food is not eaten
                 this.cells.pop();
             }
             if(this.direction =="right"){
@@ -79,22 +69,15 @@ function init(){
             var last_y = Math.round(H/10);
             
             if(this.cells[0].y<-1 || this.cells[0].x<-1|| this.cells[0].x>last_x || this.cells[0].y>last_y){
-                    alert("GameOver");
-                
-                    game_over = true;
-                
+                alert("GameOver");
+                game_over = true;
             }
         }
     };
+    
     snake.createSnake();
-    
-    //Add Event listeners to our game to Listen for keyboard events.
-    
+        
     function KeyPressed(e){
-        
-        console.log("You pressed a key");
-        console.log(e);
-        
         if(e.key=="ArrowRight"){
             snake.direction = "right";
         }
@@ -107,16 +90,15 @@ function init(){
         else{
             snake.direction = "up";
         }
-        
     }
     document.addEventListener('keydown',KeyPressed);
 }
 
 
-function draw(){
+function draw()
+{
     pen.clearRect(0,0,W,H);
     snake.drawSnake();
-    // console.log("In draw");
 
     // Lets us draw the food
     pen.fillStyle = food.color;
@@ -127,9 +109,9 @@ function draw(){
 }
 
 
-function update(){
+function update()
+{
     snake.updateSnake();
-   
 }
 
 
@@ -150,7 +132,6 @@ function gameLoop(){
 function getRandomFood(){
     var foodX = Math.round(Math.random()*(W-10)/10);
     var foodY = Math.round(Math.random()*(H-10)/10);
-    console.log("Food Positions", foodX, foodY);
     foodColors = ["red","green","aqua","coral","orchid"];
     var i = Math.round(Math.random()*foodColors.length);
     
