@@ -69,7 +69,7 @@ function init()
             var last_y = Math.round(H/10);
             
             if(this.cells[0].y<-1 || this.cells[0].x<-1|| this.cells[0].x>last_x || this.cells[0].y>last_y){
-                alert("GameOver");
+                alert("Game Over");
                 game_over = true;
             }
         }
